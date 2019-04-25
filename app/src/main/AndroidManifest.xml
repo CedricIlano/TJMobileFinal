@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ramos.pat.com.vieweventsfragments">
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- Don't require camera, as this requires a rear camera. This allows it to work on the Nexus 7 -->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.front"
+        android:required="false" /> <!-- TODO replace above two with next line after Android 4.2 -->
+    <!-- <uses-feature android:name="android.hardware.camera.any"/> -->
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.flash"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.screen.landscape"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.wifi"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/tjlogo"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/tjlogo"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".MenuPortfolio"
+            android:label="View Portfolio"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:parentActivityName=".SecondActivity"></activity>
+        <activity android:name=".RegisterLoading"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Splash"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.AppCompat.Dark.NoActionBar.FullScreen"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="View Events"
+            android:parentActivityName=".SecondActivity"
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".SecondActivity"
+            android:theme="@style/Theme.AppCompat.Dark.NoActionBar.FullScreen"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Main2Activity"
+            android:theme="@style/Theme.AppCompat.Dark.NoActionBar.FullScreen"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".VerifyCode"
+            android:theme="@style/Theme.AppCompat.Dark.NoActionBar.FullScreen"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ConfirmCode"
+            android:theme="@style/Theme.AppCompat.Dark.NoActionBar.FullScreen"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".VerifySuccess"
+            android:theme="@style/Theme.AppCompat.Dark.NoActionBar.FullScreen"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Portfolio"
+            android:label="View Portfolio"
+            android:parentActivityName=".MenuPortfolio"
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Year1"
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Year2"
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Year3"
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Year4"
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".EventDetails"
+            android:label="Event Details"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ScanSuccess"
+            android:theme="@style/Theme.AppCompat.Dark.NoActionBar.FullScreen"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.RUN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".VerifyLoginCred"
+            android:theme="@style/Theme.AppCompat.Dark.NoActionBar.FullScreen"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".VerLoginCredSuc"
+            android:theme="@style/Theme.AppCompat.Dark.NoActionBar.FullScreen"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.RUN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Help"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".CaptureActivityPortrait">
+            <intent-filter>
+                <action android:name="android.intent.action.RUN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
