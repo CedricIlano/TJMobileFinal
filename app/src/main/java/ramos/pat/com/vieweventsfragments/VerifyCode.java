@@ -40,6 +40,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+
 public class VerifyCode extends AppCompatActivity {
 
     private Button cancelbtn;
@@ -52,7 +53,8 @@ public class VerifyCode extends AppCompatActivity {
     ImageView closeDialogResend, imageResend;
     PinEntryEditText numbercode;
     private LottieAnimationView LottieMail;
-
+    OkHttpClient client;
+    public String registerUrl = "https://thomasianjourney.website/register/registerUser";
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +63,6 @@ public class VerifyCode extends AppCompatActivity {
         lottie();
 
         Intent intent = getIntent();
-
         final String email = intent.getStringExtra("email");
         final String mobile = intent.getStringExtra("mobileNumber");
 
@@ -79,7 +80,7 @@ public class VerifyCode extends AppCompatActivity {
         resend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ShowDialogResend();
+                ShowDialogResend(email, mobile);
             }
         });
         cancelbtn.setOnClickListener(new View.OnClickListener() {
@@ -103,12 +104,9 @@ public class VerifyCode extends AppCompatActivity {
                     intent.putExtra("studentsId", studentsId);
                     startActivity(intent);
                     finish();
-
                 } else {
-
                     Toast.makeText(VerifyCode.this, "Code is empty", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
     }
@@ -149,7 +147,12 @@ public class VerifyCode extends AppCompatActivity {
         Intent intent = new Intent(this,Main2Activity.class);
         startActivity(intent);
     }
-    public void ShowDialogResend() {
+    public void ShowDialogResend(String email, String mobileno) {
+        //OkHttpHandler okHttpHandler = new OkHttpHandler();
+        RegisterLoading rg = new RegisterLoading();
+        RegisterLoading.OkHttpHandler okHttpHandler = rg.new OkHttpHandler();
+        okHttpHandler.execute(registerUrl, email, mobileno);
+        //OkHttpHandler k = new OkHttpHandler(email, mobileno);
         dialog_resend.setContentView(R.layout.dialog_resend);
         closeDialogResend = (ImageView) dialog_resend.findViewById(R.id.closeDialogResend);
         imageResend = (ImageView) dialog_resend.findViewById(R.id.imageResend);
@@ -172,8 +175,11 @@ public class VerifyCode extends AppCompatActivity {
         });
 
         dialog_resend.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-        dialog_resend.show();
+        try {
+            dialog_resend.show();
+        }catch(Exception err){
+            err.printStackTrace();
+        }
     }
 
     public void CancelAnim(View view) {

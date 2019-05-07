@@ -91,7 +91,7 @@ android:background="#fcfcfc">
             app:cardBackgroundColor="#dcffffff">
 
             <TextView
-                android:id="@+id/studno"
+                android:id="@+id/home_studentNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
@@ -103,7 +103,7 @@ android:background="#fcfcfc">
                 android:textSize="16dp"
                 android:textStyle="bold" />
         <TextView
-            android:id="@+id/pts"
+            android:id="@+id/home_totalPoints"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
@@ -115,7 +115,7 @@ android:background="#fcfcfc">
             android:textSize="16dp"
             android:textStyle="bold" />
         <TextView
-            android:id="@+id/date"
+            android:id="@+id/home_currentDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"

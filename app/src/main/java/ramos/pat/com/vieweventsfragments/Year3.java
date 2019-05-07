@@ -52,29 +52,27 @@ public class Year3 extends Fragment {
     public List<Contact> listContact = new ArrayList<>();
     public ProgressDialog dialog;
 
-
+    int x = 0;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-
-        View rootView = inflater.inflate(R.layout.activity_year1, container, false);
-        list = rootView.findViewById(R.id.list2);
-        mRecyclerView = rootView.findViewById(R.id.list2);
-
-        mRecyclerViewAdapter = new RecyclerViewAdapterPort(getContext(),listContact);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mRecyclerView.setAdapter(mRecyclerViewAdapter);
         Intent i = getActivity().getIntent();
+        String yearLevel = i.getExtras().getString("yearLevel");
+        String[] tabs = i.getExtras().getStringArray("emptytab"+yearLevel);
 
-        String eventClass = "3";
-        String yearLevel = ""+i.getExtras().getString("yearLevel");
-        String accountId = "1";
+        View rootView;
+        if(tabs[2].equals("false")){
+            rootView = inflater.inflate(R.layout.activity_year1, container, false);
+            list = rootView.findViewById(R.id.list2);
+            mRecyclerView = rootView.findViewById(R.id.list2);
 
-        OkHttpHandler okHttpHandler = new OkHttpHandler();
-        //DITO PAPASOK YUNG ID NG EVENT SA VIEW EVENTS
+            mRecyclerViewAdapter = new RecyclerViewAdapterPort(getContext(),listContact);
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+            mRecyclerView.setAdapter(mRecyclerViewAdapter);
 
-        okHttpHandler.execute(url, accountId, eventClass, yearLevel);
+        }else{
+            rootView = inflater.inflate(R.layout.activity_emptytab, container, false);
+        }
 
 
         return rootView;
@@ -189,20 +187,14 @@ public class Year3 extends Fragment {
 
 
                 }else{
-                    mRecyclerView.setVisibility(View.GONE);
-                    empty = getActivity().findViewById(R.id.empty);
-                    empty.setVisibility(View.VISIBLE);
+                    x = 1;
                 }
 
             }catch(Exception err){
-                mRecyclerView.setVisibility(View.GONE);
-                empty = getActivity().findViewById(R.id.empty);
-                empty.setVisibility(View.VISIBLE);
+                x = 1;
             }
         }else{
-            mRecyclerView.setVisibility(View.GONE);
-            empty = getActivity().findViewById(R.id.empty);
-            empty.setVisibility(View.VISIBLE);
+            x = 1;
         }
 
 

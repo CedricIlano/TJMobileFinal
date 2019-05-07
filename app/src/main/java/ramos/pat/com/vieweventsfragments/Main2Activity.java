@@ -61,9 +61,7 @@ public class Main2Activity extends AppCompatActivity {
                     intent.putExtra("mobileNumber", mobile);
                     startActivity(intent);
                     finish();
-
                 } else {
-
                     Toast.makeText(Main2Activity.this, "Email and Mobile number cannot be empty ", Toast.LENGTH_SHORT).show();
                 }
             }

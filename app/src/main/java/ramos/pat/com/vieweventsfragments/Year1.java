@@ -27,6 +27,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -51,20 +52,30 @@ public class Year1 extends Fragment {
     public List<Contact> listContact = new ArrayList<>();
     public ProgressDialog dialog;
     LinearLayout empty;
+    int x = 0;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        Intent i = getActivity().getIntent();
+        String yearLevel = i.getExtras().getString("yearLevel");
+        String[] tabs = i.getExtras().getStringArray("emptytab"+yearLevel);
+//        Toast.makeText(getContext(), "Empty Tab:"+tabs[0], Toast.LENGTH_SHORT).show();
+        View rootView;
+        if(tabs[0].equals("false")){
+            rootView = inflater.inflate(R.layout.activity_year1, container, false);
+            list = rootView.findViewById(R.id.list2);
+            mRecyclerView = rootView.findViewById(R.id.list2);
 
-        View rootView = inflater.inflate(R.layout.activity_year1, container, false);
-        list = rootView.findViewById(R.id.list2);
-        mRecyclerView = rootView.findViewById(R.id.list2);
+            mRecyclerViewAdapter = new RecyclerViewAdapterPort(getContext(),listContact);
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+            mRecyclerView.setAdapter(mRecyclerViewAdapter);
 
-        mRecyclerViewAdapter = new RecyclerViewAdapterPort(getContext(),listContact);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mRecyclerView.setAdapter(mRecyclerViewAdapter);
+        }else{
+            rootView = inflater.inflate(R.layout.activity_emptytab, container, false);
+        }
 
         return rootView;
     }
@@ -178,21 +189,23 @@ public class Year1 extends Fragment {
 
 
                 }else{
-                    mRecyclerView.setVisibility(View.GONE);
+                    LinearLayout listlayout = getActivity().findViewById(R.id.list2);
                     empty = getActivity().findViewById(R.id.empty);
-                    empty.setVisibility(View.VISIBLE);
+                    View child = getLayoutInflater().inflate(R.layout.activity_emptytab, null);
+                    listlayout.addView(child);
+                    x = 1;
                 }
 
             }catch(Exception err){
 //                Toast.makeText(getContext(), "No events found", Toast.LENGTH_LONG).show();
-                mRecyclerView.setVisibility(View.GONE);
-                empty = getActivity().findViewById(R.id.empty);
-                empty.setVisibility(View.VISIBLE);
+
             }
         }else{
-            mRecyclerView.setVisibility(View.GONE);
-            empty = getActivity().findViewById(R.id.empty);
-            empty.setVisibility(View.VISIBLE);
+//            LinearLayout listlayout = getActivity().findViewById(R.id.listlayout);
+//            empty = getActivity().findViewById(R.id.empty);
+//            View child = getLayoutInflater().inflate(R.layout.activity_emptytab, null);
+//            listlayout.addView(child);
+            x = 1;
         }
 
 

@@ -35,7 +35,7 @@ public class RegisterLoading extends AppCompatActivity {
     private TextView tvone;
     private TextView tvtwo;
     private LottieAnimationView LottieLoad;
-    public String registerUrl = "https://0bdea93e.ngrok.io/thomasianjourney/register/registerUser";
+    public String registerUrl = "https://thomasianjourney.website/register/registerUser";
 
     OkHttpClient client;
 
@@ -57,7 +57,6 @@ public class RegisterLoading extends AppCompatActivity {
         Intent intent = getIntent();
         String email = intent.getStringExtra("email");
         String mobile = intent.getStringExtra("mobileNumber");
-//        int studentsId = intent.getIntExtra("studentsId", -1);
 
         OkHttpHandler okHttpHandler = new OkHttpHandler();
 
@@ -103,13 +102,6 @@ public class RegisterLoading extends AppCompatActivity {
             }
         } catch (IOException e) {
             e.printStackTrace();
-//            if (counter < 5) {
-//                System.out.println("Counter is: " + counter);
-//                counter++;
-//                doInBackgroundTask(emailAddress, mobileNumber, url);
-//            } else {
-//                // five failed attempts
-//            }
         }
 
         return "";

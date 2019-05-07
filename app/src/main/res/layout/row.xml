@@ -14,7 +14,7 @@
         android:id="@+id/contact_item_id">
 
     <Button
-        android:id="@+id/date"
+        android:id="@+id/home_currentDate"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:text="Date"

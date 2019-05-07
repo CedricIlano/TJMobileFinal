@@ -31,10 +31,6 @@ public class RecyclerViewAdapterPort extends RecyclerView.Adapter<RecyclerViewAd
         v = LayoutInflater.from(mContext).inflate(R.layout.sample_time_line, viewGroup, false);
         final MyViewHolder vHolder = new MyViewHolder(v);
 
-
-
-
-
         return vHolder;
     }
 
@@ -51,7 +47,7 @@ public class RecyclerViewAdapterPort extends RecyclerView.Adapter<RecyclerViewAd
     @Override
     public int getItemCount() {
         return mData.size();
-     }
+    }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 

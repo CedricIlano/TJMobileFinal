@@ -1,10 +1,11 @@
 package ramos.pat.com.vieweventsfragments;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,14 +18,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.baoyachi.stepview.HorizontalStepView;
-import com.baoyachi.stepview.bean.StepBean;
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
+import java.util.Date;
 
 
 public class SecondActivity extends AppCompatActivity {
@@ -34,11 +34,14 @@ public class SecondActivity extends AppCompatActivity {
     CardView eventId;
     CardView portId;
     CardView stream1;
+
     Button streambtn1;
+
     NestedScrollView scrollhelp;
+
     LinearLayout layouthelp;
-    TextView txthelp, title_text1, title_text2, title_text3, title_text4, title_text5, title_text6,
-            content_text1, content_text2, content_text3, content_text4, content_text5, content_text6;
+
+    TextView home_studentNumber, home_totalPoints, home_currentDate;
     Dialog dialog_help;
     ImageView closeDialogHelp;
 
@@ -51,61 +54,29 @@ public class SecondActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
-        Calendar calendar = Calendar.getInstance();
-        String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(calendar.getTime());
+        home_studentNumber = findViewById(R.id.home_studentNumber);
+        home_totalPoints = findViewById(R.id.home_totalPoints);
+        home_currentDate = findViewById(R.id.home_currentDate);
 
-        TextView textViewDate = findViewById(R.id.date);
-        textViewDate.setText("Today is " + currentDate);
+        home_studentNumber.setText(getStudentId() + "");
+        home_totalPoints.setText("xx.xx");
+        home_currentDate.setText(DateFormat.getDateInstance(DateFormat.FULL).format(Calendar.getInstance().getTime()));
 
+    }
 
-        eventId = findViewById(R.id.eventId);
+    private int getStudentId() {
 
-//        eventId.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(SecondActivity.this, MainActivity.class));
-//            }
-//        });
+        SharedPreferences sharedPreferences = getSharedPreferences("sp", Context.MODE_PRIVATE);
 
-        portId = findViewById(R.id.portId);
+        String email = sharedPreferences.getString("email", "");
+        String mobile = sharedPreferences.getString("mobile", "");
+        int studentId = sharedPreferences.getInt("studentsId", -1);
 
-//        portId.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(SecondActivity.this, Portfolio.class));
-//            }
-//        });
+        if (!email.isEmpty() && !mobile.isEmpty())
+            return studentId;
+        else
+            return -1;
 
-        // Event Stream
-
-//        stream1 = findViewById(R.id.stream1);
-//
-//        stream1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(SecondActivity.this, EventDetails.class));
-//            }
-//        });
-
-        streambtn1 = findViewById(R.id.streambtn1);
-
-        streambtn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(SecondActivity.this, EventDetails.class));
-            }
-        });
-
-        dialog_help = new Dialog(this);
-
-        img_help = findViewById(R.id.img_help);
-        img_help.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ShowDialogHelp();
-
-            }
-        });
     }
 
     public void ShowDialogHelp() {

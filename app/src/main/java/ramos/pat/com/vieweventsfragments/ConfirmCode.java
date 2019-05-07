@@ -35,7 +35,7 @@ public class ConfirmCode extends AppCompatActivity {
     private TextView tvone;
     private TextView tvtwo;
     private LottieAnimationView LottieLoad;
-    public String registerUrl = "https://0bdea93e.ngrok.io/thomasianjourney/register/checkCode";
+    public String registerUrl = "https://thomasianjourney.website/register/checkCode";
 
     String numberCode;
     String email;

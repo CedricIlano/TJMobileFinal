@@ -20,18 +20,15 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.blogspot.atifsoftwares.animatoolib.Animatoo;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
@@ -66,7 +63,7 @@ public class EventDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         dialog = new ProgressDialog(this);
         setContentView(R.layout.activity_eventdetails);
-        tv_date = findViewById(R.id.date);
+        tv_date = findViewById(R.id.home_currentDate);
         tv_title = findViewById(R.id.title);
         tv_description = findViewById(R.id.description);
         tv_venue = findViewById(R.id.venue);

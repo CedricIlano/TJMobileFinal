@@ -1,6 +1,8 @@
 package ramos.pat.com.vieweventsfragments;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -19,11 +21,50 @@ public class VerifySuccess extends AppCompatActivity {
     private Button contbtn;
     private LottieAnimationView LottieCheck;
 
+    String email, mobile;
+    int studentsId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verify_success);
+        lottie();
+        stepView();
 
+        final Intent intent = getIntent();
+
+        if (intent != null) {
+            email = intent.getStringExtra("email");
+            mobile = intent.getStringExtra("mobileNumber");
+            studentsId = intent.getIntExtra("studentsId", -1);
+        }
+
+        contbtn = (Button) findViewById(R.id.contbtn);
+        contbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sharedPreferences(email, mobile, studentsId);
+
+                Intent i = new Intent(VerifySuccess.this, SecondActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
+    }
+
+    public void sharedPreferences(String email, String mobile, int studentsId) {
+
+        SharedPreferences sharedPreferences = getSharedPreferences("sp", Context.MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString("email", email);
+        editor.putString("mobile", mobile);
+        editor.putInt("studentsId", studentsId);
+
+        editor.commit();
+    }
+    public void lottie(){
         //ANIMATION LOTTIE
         LottieCheck = findViewById(R.id.mainlottieCheck);
 
@@ -31,7 +72,8 @@ public class VerifySuccess extends AppCompatActivity {
         LottieCheck.setVisibility(View.VISIBLE);
         LottieCheck.setAnimation(R.raw.check);
         LottieCheck.playAnimation();
-
+    }
+    public void stepView(){
         //STEPVIEW
 
         HorizontalStepView stepview = (HorizontalStepView) findViewById(R.id.step_view);
@@ -54,24 +96,7 @@ public class VerifySuccess extends AppCompatActivity {
                 .setStepsViewIndicatorCompleteIcon(ContextCompat.getDrawable(VerifySuccess.this, R.drawable.ic_check_black))
                 .setStepsViewIndicatorDefaultIcon(ContextCompat.getDrawable(VerifySuccess.this, R.drawable.ic_radio))
                 .setStepsViewIndicatorAttentionIcon(ContextCompat.getDrawable(VerifySuccess.this, R.drawable.tiger_rar));
-
-        contbtn = (Button) findViewById(R.id.contbtn);
-//        contbtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                openSecondActivity();
-//            }
-//        });
     }
-
-//    public void openSecondActivity() {
-//        Intent intent = new Intent(this,SecondActivity.class);
-//        startActivity(intent);
-//        finish();
-//    }
-
-    //ANIMATION
-
     public void MainAnim(View view) {
         if (view == findViewById(R.id.contbtn)) {
             //open verifycode
@@ -81,4 +106,11 @@ public class VerifySuccess extends AppCompatActivity {
             finish();
         }
     }
+    //    public void openSecondActivity() {
+//        Intent intent = new Intent(this,SecondActivity.class);
+//        startActivity(intent);
+//        finish();
+//    }
+
+    //ANIMATION
 }

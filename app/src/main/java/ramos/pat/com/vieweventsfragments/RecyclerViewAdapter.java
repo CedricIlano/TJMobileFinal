@@ -1,51 +1,18 @@
 package ramos.pat.com.vieweventsfragments;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ViewSwitcher;
-
-import java.util.List;
-
-
-
-
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.ViewSwitcher;
 
 import java.util.List;
 
@@ -232,10 +199,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             super(itemView);
             activityId = itemView.findViewById(R.id.activityId);
             item_contact = itemView.findViewById(R.id.contact_item_id);
-            date = itemView.findViewById(R.id.date);
+            date = itemView.findViewById(R.id.home_currentDate);
             tv_name = itemView.findViewById(R.id.name_title);
             tv_desc = itemView.findViewById(R.id.desc);
-            tv_date = itemView.findViewById(R.id.date);
+            tv_date = itemView.findViewById(R.id.home_currentDate);
             attended = itemView.findViewById(R.id.attended);
 
         }
